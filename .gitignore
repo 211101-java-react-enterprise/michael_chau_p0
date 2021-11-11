@@ -1,8 +1,12 @@
-# Default ignored files
-/shelf/
-/workspace.xml
-
+# IDE-specific files
 .idea/
 *.iml
-*.xml
+
+# Compiled/Packaged files and directories
+out/
+target/
+*.class
+*.jar
+
+# Properties files
 *.properties
