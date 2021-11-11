@@ -6,7 +6,6 @@
 out/
 target/
 *.class
-*.jar
 
 # Properties files
 *.properties
