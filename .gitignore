@@ -1,6 +1,5 @@
 # IDE-specific files
 .idea/
-*.iml
 
 # Compiled/Packaged files and directories
 out/
