@@ -1,5 +1,6 @@
 package com.Revature.Upposit.util;
 
+import com.Revature.Upposit.screens.DashboardScreen;
 import com.Revature.Upposit.screens.LoginScreen;
 import com.Revature.Upposit.screens.RegisterScreen;
 import com.Revature.Upposit.screens.WelcomeScreen;
@@ -22,6 +23,7 @@ public class AppState {
         router.addScreen(new WelcomeScreen(consoleReader, router));
         router.addScreen(new RegisterScreen(consoleReader, router, userService));
         router.addScreen(new LoginScreen(consoleReader, router, userService));
+        router.addScreen(new DashboardScreen(consoleReader, router, userService));
 
     }
 
