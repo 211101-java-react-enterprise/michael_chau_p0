@@ -24,6 +24,10 @@ public class AppUser extends Object {
         this.id = id;
     }
 
+    public AppUser() {
+        super();
+    }
+
     public String getId() {
         return id;
     }

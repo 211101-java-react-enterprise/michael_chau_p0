@@ -9,6 +9,7 @@ import com.Revature.Upposit.models.AppUser;
 public class UserService {
 
     private AppUserDAO userDAO = new AppUserDAO();
+    private AppUser loggedInUser;
 
     public boolean registerNewUser(AppUser newUser) {
 
@@ -40,6 +41,8 @@ public class UserService {
             throw new AuthenticationException();
         }
 
+        loginUser(authenticatedUser);
+
         return authenticatedUser;
 
     }
@@ -53,4 +56,19 @@ public class UserService {
         return user.getPassword() != null && !user.getPassword().trim().equals("");
     }
 
+    public AppUser getUser() {
+        return loggedInUser;
+    }
+
+    public boolean isUserLoggedIn() {
+        return (loggedInUser != null);
+    }
+
+    public void logoutUser() {
+        loggedInUser = null;
+    }
+
+    public void loginUser(AppUser user) {
+        loggedInUser = user;
+    }
 }

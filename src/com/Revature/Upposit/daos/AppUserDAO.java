@@ -7,24 +7,34 @@ import com.Revature.Upposit.util.List;
 import java.io.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
 public class AppUserDAO implements CrudDAO<AppUser> {
 
-    // TODO: Implement me!
     public AppUser findUserByUsernameAndPassword(String username, String password) {
 
-        try (BufferedReader dataReader = new BufferedReader(new FileReader("resources/data.txt"))) {
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+            String sql = "select * from app_users where username = ? and password = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+            ResultSet result = pstmt.executeQuery();
 
-            String dataCursor;
-            while((dataCursor = dataReader.readLine()) != null) {
-                String[] userData = dataCursor.split(":");
-                if (userData[4].equals(username) && userData[5].equals(password)) {
-                    return new AppUser(userData[0], userData[1], userData[2], userData[3], userData[4], userData[5]);
-                }
+            if (result.next()) {
+                AppUser user = new AppUser();
+                user.setId(result.getString("user_id"));
+                user.setFirstName(result.getString("first_name"));
+                user.setLastName(result.getString("last_name"));
+                user.setEmail(result.getString("email"));
+                user.setUsername(result.getString("username"));
+                user.setPassword(result.getString("password"));
+
+                return user;
             }
-        } catch (IOException e) {
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
