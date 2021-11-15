@@ -14,8 +14,8 @@ public class WelcomeScreen extends Screen {
 
     @Override
     public void render() throws Exception {
-
-        System.out.print("Welcome to Upposit!\n" +
+        System.out.println("\n                    Upposit Bank");
+        System.out.print("Please select an option:\n" +
                 "1) Login\n" +
                 "2) Register\n" +
                 "3) Exit\n" +

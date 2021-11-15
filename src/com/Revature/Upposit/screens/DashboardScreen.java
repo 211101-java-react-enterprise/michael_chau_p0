@@ -19,6 +19,7 @@ public class DashboardScreen extends Screen{
     @Override
     public void render() throws Exception {
         AppUser sessionUser = userService.getUser();
+
         if (sessionUser == null) {
             System.out.println("You are not currently logged in! Navigating to Login Screen");
             router.navigate("/login");
@@ -28,10 +29,15 @@ public class DashboardScreen extends Screen{
         while (userService.isUserLoggedIn()) {
             System.out.printf("\n%s's Dashboard\n", sessionUser.getFirstName());
 
-            String menu = "1) View/edit my profile information\n" +
-                    "2) View/create study sets\n" +
-                    "3) View/create flashcards\n" +
-                    "4) Logout\n" +
+            String menu =
+                    "Please select an option:\n" +
+                    "1) View Checking Account(s) \n" +
+                    "2) View Saving Account(s) \n" +
+                    "3) Make an upposit\n" +
+                    "4) Make a withdrawal\n" +
+                    "5) Transfer between accounts\n" +
+                    "6) View/edit profile details\n" +
+                    "7) Logout\n" +
                     "> ";
 
             System.out.print(menu);
@@ -46,9 +52,18 @@ public class DashboardScreen extends Screen{
                     System.out.println("View/edit study sets selected");
                     break;
                 case "3":
-                    router.navigate("/flashcards");
+                    router.navigate("/accounts");
                     break;
                 case "4":
+                    break;
+                case "5":
+                    router.navigate("/accounts");
+                    break;
+                case "6":
+                    router.navigate("/accounts");
+                    break;
+                case "7":
+                    System.out.printf("Logging out. Have a good day, %s.\n", sessionUser.getFirstName());
                     userService.logoutUser();
                     break;
                 default:
