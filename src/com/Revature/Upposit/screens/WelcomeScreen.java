@@ -15,7 +15,7 @@ public class WelcomeScreen extends Screen {
     @Override
     public void render() throws Exception {
 
-        System.out.print("Welcome to Quizzard!\n" +
+        System.out.print("Welcome to Upposit!\n" +
                 "1) Login\n" +
                 "2) Register\n" +
                 "3) Exit\n" +
@@ -35,7 +35,7 @@ public class WelcomeScreen extends Screen {
                 shutdown();
                 break;
             case "throw exception":
-                throw new RuntimeException(); // "throw" is used to explicitly throw an exception that will (hopefully) be handled elsewhere
+                throw new RuntimeException();
             default:
                 System.out.println("The user made an invalid selection");
         }
