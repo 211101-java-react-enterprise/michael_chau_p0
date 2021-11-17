@@ -27,7 +27,7 @@ public class DashboardScreen extends Screen{
         }
 
         while (userService.isUserLoggedIn()) {
-            System.out.printf("\n%s's Dashboard\n", sessionUser.getFirstName());
+            System.out.printf("\n          Main Menu: %s's Dashboard\n", sessionUser.getFirstName());
 
             String menu =
                     "Please select an option:\n" +

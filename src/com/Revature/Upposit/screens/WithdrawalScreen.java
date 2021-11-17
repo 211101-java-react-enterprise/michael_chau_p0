@@ -38,14 +38,15 @@ public class WithdrawalScreen extends Screen{
         for (int i=0; i< size; i++){
             Account acc = accountList.pollFirst();
             fullList.add(acc);
+            String formattedBal = String.format("%.02f", acc.getBalance());
             options = options + (i+1) + ") "+acc.getAccName()+" "+acc.getAcc_type()+" Account" +
-                    "        Balance: $"+acc.getBalance() + "\n";
+                    "        Balance: $"+formattedBal + "\n";
         }
 
-        System.out.println("\nAccount Withdrawal Menu\n");
+        System.out.println("\n           Account Withdrawal Menu\n");
         System.out.println("Which account would you like to withdraw from?");
         System.out.print(options);
-        System.out.print((size+1)+") Exit\n>");
+        System.out.print((size+1)+") Exit\n> ");
         String input_acc_index = consoleReader.readLine();
         int index = -1;
 

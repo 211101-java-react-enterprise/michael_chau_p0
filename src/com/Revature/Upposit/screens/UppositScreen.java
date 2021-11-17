@@ -10,7 +10,6 @@ import com.Revature.Upposit.util.ArrayList;
 import com.Revature.Upposit.util.ScreenRouter;
 
 import java.io.BufferedReader;
-import java.sql.SQLException;
 
 public class UppositScreen extends Screen {
 
@@ -40,13 +39,13 @@ public class UppositScreen extends Screen {
             Account acc = accountList.pollFirst();
             fullList.add(acc);
             options = options + (i+1) + ") "+acc.getAccName()+" "+acc.getAcc_type()+" Account" +
-                    "        Balance: $"+acc.getBalance() + "\n";
+                    "        Balance: $"+acc.getBalanceToString() + "\n";
         }
 
-        System.out.println("\nAccount Upposit Menu\n");
+        System.out.println("\n       Account Upposit Menu\n");
         System.out.println("Which account do you want to make an Upposit to?");
         System.out.print(options);
-        System.out.print((size+1)+") Exit\n>");
+        System.out.print((size+1)+") Exit\n> ");
         String input_acc_index = consoleReader.readLine();
         int index = -1;
 

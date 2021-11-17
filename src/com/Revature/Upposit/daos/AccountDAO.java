@@ -56,7 +56,6 @@ public class AccountDAO implements CrudDAO<Account>{
             pstmt.setDouble(2, newAcc.getBalance());
             pstmt.setString(3, newAcc.getCreatorId());
             pstmt.setString(4, newAcc.getAcc_type());
-//            pstmt.setString(5, newAcc.getDate_created());
 
             int rowsInserted = pstmt.executeUpdate();
 

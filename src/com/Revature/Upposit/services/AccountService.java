@@ -104,7 +104,7 @@ public class AccountService {
 
             if (acc.getAcc_type().equals(acc_type)){
                 result = result + (runningCount) + ") "+acc.getAccName()+" "+acc.getAcc_type()+" Account" +
-                        "        Balance: $"+acc.getBalance() + "\n";
+                        "        Balance: $"+acc.getBalanceToString() + "\n";
                 runningCount++;
             }
         }
