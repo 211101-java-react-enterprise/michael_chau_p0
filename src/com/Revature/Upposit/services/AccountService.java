@@ -7,7 +7,6 @@ import com.Revature.Upposit.models.Account;
 import com.Revature.Upposit.daos.AccountDAO;
 import com.Revature.Upposit.models.AppUser;
 import com.Revature.Upposit.util.ArrayDeque;
-import com.Revature.Upposit.util.List;
 
 public class AccountService {
 
@@ -79,21 +78,38 @@ public class AccountService {
         return accountDao.update(account);
     }
 
-//    public UserService getUser() {
-//        return sessionUser;
-//    }
+    public UserService getUserService() {
+        return sessionUser;
+    }
 
     public ArrayDeque<Account> getAccounts(String userId) {
         // Returns a list of accounts based off user id.
         return accountDao.findAccountsByUserId(userId);
     }
 
-    public boolean isValidInteger(String value) {
-        try {
-            Integer.parseInt(value);
-        } catch (NumberFormatException e) {
+    public boolean displayListOfAcc(int type){
+        String acc_type = (type==1) ? "Checking" : "Savings";
+        ArrayDeque<Account> accountList = getAccounts(getUserService().getUser().getId());
+        String result = "\n";
+
+        if (accountList.isEmpty()){
+            System.out.println("You currently have no accounts");
             return false;
         }
+
+        int size = accountList.size();
+        int runningCount = 1;
+        for (int i=0; i< size; i++){
+            Account acc = accountList.pollFirst();
+
+            if (acc.getAcc_type().equals(acc_type)){
+                result = result + (runningCount) + ") "+acc.getAccName()+" "+acc.getAcc_type()+" Account" +
+                        "        Balance: $"+acc.getBalance() + "\n";
+                runningCount++;
+            }
+        }
+
+        System.out.println(result);
         return true;
     }
 }

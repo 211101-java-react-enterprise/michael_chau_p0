@@ -35,6 +35,8 @@ public class AppState {
         router.addScreen(new AccCreationScreen(consoleReader, router, userService, accountService));
         router.addScreen(new UppositScreen(consoleReader, router, userService, accountService));
         router.addScreen(new WithdrawalScreen(consoleReader, router, userService, accountService));
+        router.addScreen(new CheckingAccScreen(consoleReader, router, accountService));
+        router.addScreen(new SavingsAccScreen(consoleReader, router, accountService));
 
     }
 
