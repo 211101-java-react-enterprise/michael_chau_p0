@@ -1,9 +1,13 @@
 package com.Revature.Upposit.util;
 
-import com.Revature.Upposit.screens.DashboardScreen;
+
 import com.Revature.Upposit.screens.LoginScreen;
 import com.Revature.Upposit.screens.RegisterScreen;
 import com.Revature.Upposit.screens.WelcomeScreen;
+
+import com.Revature.Upposit.daos.AccountDAO;
+import com.Revature.Upposit.screens.*;
+import com.Revature.Upposit.services.AccountService;
 import com.Revature.Upposit.services.UserService;
 
 import java.io.BufferedReader;
@@ -20,10 +24,15 @@ public class AppState {
         BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
 
         UserService userService = new UserService();
+
+        AccountDAO accDao = new AccountDAO();
+        AccountService accountService = new AccountService(accDao, userService);
+
         router.addScreen(new WelcomeScreen(consoleReader, router));
         router.addScreen(new RegisterScreen(consoleReader, router, userService));
         router.addScreen(new LoginScreen(consoleReader, router, userService));
         router.addScreen(new DashboardScreen(consoleReader, router, userService));
+        router.addScreen(new AccCreationScreen(consoleReader, router, userService, accountService));
 
     }
 
