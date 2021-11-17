@@ -6,9 +6,8 @@ import com.Revature.Upposit.models.Account;
 
 import com.Revature.Upposit.daos.AccountDAO;
 import com.Revature.Upposit.models.AppUser;
+import com.Revature.Upposit.util.ArrayDeque;
 import com.Revature.Upposit.util.List;
-
-import java.util.UUID;
 
 public class AccountService {
 
@@ -94,6 +93,11 @@ public class AccountService {
 
     public UserService getSessionUser() {
         return sessionUser;
+    }
+
+    public ArrayDeque<Account> getAccounts(String userId) {
+        // Returns a list of accounts based off user id.
+        return accountDao.findAccountsByUserId(userId);
     }
 
 //    public List<Account> returnMyAccounts() {

@@ -33,6 +33,8 @@ public class AppState {
         router.addScreen(new LoginScreen(consoleReader, router, userService));
         router.addScreen(new DashboardScreen(consoleReader, router, userService));
         router.addScreen(new AccCreationScreen(consoleReader, router, userService, accountService));
+        router.addScreen(new UppositScreen(consoleReader, router, userService, accountService));
+        router.addScreen(new WithdrawalScreen(consoleReader, router, userService, accountService));
 
     }
 
