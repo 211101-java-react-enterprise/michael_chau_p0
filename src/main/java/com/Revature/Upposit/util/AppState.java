@@ -1,6 +1,7 @@
 package com.Revature.Upposit.util;
 
 
+import com.Revature.Upposit.daos.AppUserDAO;
 import com.Revature.Upposit.screens.LoginScreen;
 import com.Revature.Upposit.screens.RegisterScreen;
 import com.Revature.Upposit.screens.WelcomeScreen;
@@ -23,7 +24,8 @@ public class AppState {
         router = new ScreenRouter();
         BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
 
-        UserService userService = new UserService();
+        AppUserDAO userDAO = new AppUserDAO();
+        UserService userService = new UserService(userDAO);
 
         AccountDAO accDao = new AccountDAO();
         AccountService accountService = new AccountService(accDao, userService);

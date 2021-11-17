@@ -1,5 +1,6 @@
 package com.Revature.Upposit.services;
 
+import com.Revature.Upposit.daos.AppUserDAO;
 import com.Revature.Upposit.exceptions.InvalidRequestException;
 import com.Revature.Upposit.exceptions.ResourcePersistenceException;
 import com.Revature.Upposit.models.Account;
@@ -11,8 +12,12 @@ import com.Revature.Upposit.util.ArrayDeque;
 public class AccountService {
 
     private Account account;
-    private final UserService sessionUser;
-    private final AccountDAO accountDao;
+    private UserService sessionUser;
+    private AccountDAO accountDao;
+
+    public AccountService(AccountDAO accDAO) {
+        this.accountDao = accDAO;
+    }
 
     public AccountService(AccountDAO accountDao, UserService sessionUser) {
         this.accountDao = accountDao;

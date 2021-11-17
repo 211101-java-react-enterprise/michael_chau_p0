@@ -1,7 +1,7 @@
 package com.Revature.Upposit.services;
 
 import com.Revature.Upposit.daos.AppUserDAO;
-import com.Revature.Upposit.exceptions.InvalidRequestException;
+
 import com.Revature.Upposit.exceptions.ResourcePersistenceException;
 import com.Revature.Upposit.models.AppUser;
 import org.junit.After;
@@ -13,20 +13,8 @@ import static org.mockito.Mockito.*;
 
 public class UserServiceTestSuite {
 
-    // System Under Test
-//    UserService sut = new UserService();
     UserService sut;
     AppUserDAO mockUserDAO;
-
-    /*
-        JUnit Annotations
-            - @Before (runs before each test case)
-            - @After (runs after each test case)
-            - @BeforeClass (runs once before all test cases)
-            - @AfterClass (runs once after all test cases)
-            - @Test (marks a method in a test suite as a test case)
-            - @Ignore (indicates that the annotated test case should be skipped)
-     */
 
     @Before
     public void testCaseSetup() {
@@ -128,23 +116,6 @@ public class UserServiceTestSuite {
             // Assert
             verify(mockUserDAO, times(0)).save(validUser);
         }
-
-    }
-
-    @Test(expected = InvalidRequestException.class)
-    public void test_registerNewUser_throwsInvalidRequestException_givenInvalidUser() {
-        sut.registerNewUser(null);
-    }
-
-    // TODO implement test case
-    @Test
-    public void test_registerNewUser_throwsInvalidRequestException_givenUserWithDuplicatedEmailOrUsername() {
-
-        // Arrange
-
-        // Act
-
-        // Assert
 
     }
 
