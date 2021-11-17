@@ -24,7 +24,7 @@ public class AppUserDAO implements CrudDAO<AppUser> {
 
             if (result.next()) {
                 AppUser user = new AppUser();
-                user.setId(result.getString("user_id"));
+                user.setId(result.getString("id"));
                 user.setFirstName(result.getString("first_name"));
                 user.setLastName(result.getString("last_name"));
                 user.setEmail(result.getString("email"));

@@ -38,6 +38,7 @@ public class DashboardScreen extends Screen{
                     "5) Transfer between accounts\n" +
                     "6) View/edit profile details\n" +
                     "7) Logout\n" +
+                    "8) Create Account\n"        +
                     "> ";
 
             System.out.print(menu);
@@ -65,6 +66,9 @@ public class DashboardScreen extends Screen{
                 case "7":
                     System.out.printf("Logging out. Have a good day, %s.\n", sessionUser.getFirstName());
                     userService.logoutUser();
+                    break;
+                case "8":
+                    router.navigate("/create");
                     break;
                 default:
                     System.out.println("You have made an invalid selection");
