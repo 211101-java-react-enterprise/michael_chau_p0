@@ -1,6 +1,7 @@
 package com.Revature.Upposit.util;
 
 
+import com.Revature.Upposit.daos.AppUserDAO;
 import com.Revature.Upposit.screens.LoginScreen;
 import com.Revature.Upposit.screens.RegisterScreen;
 import com.Revature.Upposit.screens.WelcomeScreen;
@@ -23,7 +24,8 @@ public class AppState {
         router = new ScreenRouter();
         BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
 
-        UserService userService = new UserService();
+        AppUserDAO userDAO = new AppUserDAO();
+        UserService userService = new UserService(userDAO);
 
         AccountDAO accDao = new AccountDAO();
         AccountService accountService = new AccountService(accDao, userService);
@@ -33,6 +35,10 @@ public class AppState {
         router.addScreen(new LoginScreen(consoleReader, router, userService));
         router.addScreen(new DashboardScreen(consoleReader, router, userService));
         router.addScreen(new AccCreationScreen(consoleReader, router, userService, accountService));
+        router.addScreen(new UppositScreen(consoleReader, router, userService, accountService));
+        router.addScreen(new WithdrawalScreen(consoleReader, router, userService, accountService));
+        router.addScreen(new CheckingAccScreen(consoleReader, router, accountService));
+        router.addScreen(new SavingsAccScreen(consoleReader, router, accountService));
 
     }
 

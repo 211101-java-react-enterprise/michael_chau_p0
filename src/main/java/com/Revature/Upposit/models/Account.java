@@ -20,7 +20,11 @@ public class Account extends Object{
     public String getAcc_id() { return acc_id;}
     public void setId(String id) { this.acc_id = id;}
 
-    public double getBalance() { return balance;}
+    public double getBalance() {return balance;}
+    public String getBalanceToString() {
+        String formattedBal = String.format("%.02f", balance);
+        return formattedBal;
+    }
     public void setBalance(Double bal) { this.balance = bal;}
     public void setBalance(String bal) { this.balance = Double.parseDouble(bal);}
 
@@ -34,5 +38,8 @@ public class Account extends Object{
     public String getAcc_type() { return acc_type;}
     public void setAcc_type(String type) { this.acc_type = type;}
 
-
+    public String getAccName() {
+        //returns last 7 digits
+        return acc_id.substring(acc_id.length() - 7);
+    }
 }

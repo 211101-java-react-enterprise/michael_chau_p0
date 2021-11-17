@@ -27,7 +27,7 @@ public class DashboardScreen extends Screen{
         }
 
         while (userService.isUserLoggedIn()) {
-            System.out.printf("\n%s's Dashboard\n", sessionUser.getFirstName());
+            System.out.printf("\n          Main Menu: %s's Dashboard\n", sessionUser.getFirstName());
 
             String menu =
                     "Please select an option:\n" +
@@ -35,10 +35,8 @@ public class DashboardScreen extends Screen{
                     "2) View Saving Account(s) \n" +
                     "3) Make an upposit\n" +
                     "4) Make a withdrawal\n" +
-                    "5) Transfer between accounts\n" +
-                    "6) View/edit profile details\n" +
-                    "7) Logout\n" +
-                    "8) Create Account\n"        +
+                    "5) Create\n" +
+                    "6) Logout\n" +
                     "> ";
 
             System.out.print(menu);
@@ -47,28 +45,23 @@ public class DashboardScreen extends Screen{
 
             switch (userSelection) {
                 case "1":
-                    System.out.println("View/edit profile selected");
+                    router.navigate("/checking_accounts");
                     break;
                 case "2":
-                    System.out.println("View/edit study sets selected");
+                    router.navigate("/savings_accounts");
                     break;
                 case "3":
-                    router.navigate("/accounts");
+                    router.navigate("/upposit");
                     break;
                 case "4":
+                    router.navigate("/withdrawal");
                     break;
                 case "5":
-                    router.navigate("/accounts");
+                    router.navigate("/create");
                     break;
                 case "6":
-                    router.navigate("/accounts");
-                    break;
-                case "7":
                     System.out.printf("Logging out. Have a good day, %s.\n", sessionUser.getFirstName());
                     userService.logoutUser();
-                    break;
-                case "8":
-                    router.navigate("/create");
                     break;
                 default:
                     System.out.println("You have made an invalid selection");

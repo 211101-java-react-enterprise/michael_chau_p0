@@ -31,23 +31,20 @@ public class AccCreationScreen extends Screen {
                 "3) Exit\n> ");
         String acc_type = consoleReader.readLine();
 
-        if (acc_type == "1") {
-            acc_type = "checking";
-        } else if (acc_type == "2") {
-            acc_type = "savings";
+        if (acc_type.equals("1")) {
+            acc_type = "Checking";
+        } else if (acc_type.equals("2")) {
+            acc_type = "Savings";
         } else router.navigate("/dashboard");
 
         System.out.print("Initial upposit: ");
         String upposit = consoleReader.readLine();
 
         System.out.println("Thank you, please allow me to confirm your upposit details.");
-        // String format specifiers: %s (strings), %d (whole numbers), %f (decimal values)
-
-//        Account newAcc = new Account(acc_type, upposit);
 
         try {
-            accountService.createNewAcc(sessionUser, acc_type, upposit);
-            System.out.println("Successfully created your " + acc_type + "account.");
+            boolean creationIsSuccessful = accountService.createNewAcc(sessionUser, acc_type, upposit);
+            if(creationIsSuccessful)System.out.println("Successfully created your " + acc_type + " account.");
 
         } catch (InvalidRequestException e) {
             System.out.println("You have provided invalid data. Please try again.");

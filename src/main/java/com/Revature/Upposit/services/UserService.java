@@ -11,13 +11,23 @@ public class UserService {
     private AppUserDAO userDAO = new AppUserDAO();
     private AppUser loggedInUser;
 
+    public UserService(AppUserDAO userDAO) {
+        this.userDAO = userDAO;
+        this.loggedInUser = null;
+    }
+
     public boolean registerNewUser(AppUser newUser) {
 
         if (!isUserValid(newUser)) {
             throw new InvalidRequestException("Invalid user data provided!");
         }
 
-        // TODO: write logic that verifies that the new user's username and email are not already taken
+        if(userDAO.findUserByEmail(newUser.getEmail()) != null) {
+            throw new ResourcePersistenceException("A user already used this email.");
+        }
+        if(userDAO.findUserByUsername(newUser.getUsername()) != null) {
+            throw new ResourcePersistenceException("A user already used this username.");
+        }
 
         AppUser registeredUser = userDAO.save(newUser);
 
