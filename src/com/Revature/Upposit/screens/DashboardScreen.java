@@ -53,7 +53,7 @@ public class DashboardScreen extends Screen{
                     System.out.println("View/edit study sets selected");
                     break;
                 case "3":
-                    router.navigate("/accounts");
+                    router.navigate("/upposit");
                     break;
                 case "4":
                     break;

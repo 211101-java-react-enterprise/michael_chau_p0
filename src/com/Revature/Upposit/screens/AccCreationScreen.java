@@ -32,9 +32,9 @@ public class AccCreationScreen extends Screen {
         String acc_type = consoleReader.readLine();
 
         if (acc_type.equals("1")) {
-            acc_type = "checking";
+            acc_type = "Checking";
         } else if (acc_type.equals("2")) {
-            acc_type = "savings";
+            acc_type = "Savings";
         } else router.navigate("/dashboard");
 
         System.out.print("Initial upposit: ");

@@ -131,7 +131,7 @@ public class ArrayList<T> implements List<T> {
      * @param element element to be inserted
      * @throws IndexOutOfBoundsException if the index is out of range (index < 0 || index > size())
      */
-    @Override
+
     public void add(int index, T element) {
         if (size == maxCapacity) {
             grow();
@@ -152,7 +152,7 @@ public class ArrayList<T> implements List<T> {
      * @param element element to be stored at the specified position
      * @return the element previously at the specified position
      */
-    @Override
+
     public T set(int index, T element) {
         elements[index] = element;
         return null;
@@ -167,7 +167,7 @@ public class ArrayList<T> implements List<T> {
      * @return the element previously at the specified position
      * @throws IndexOutOfBoundsException if the index is out of range (index < 0 || index >= size())
      */
-    @Override
+
     public T remove(int index) {
 
 
@@ -188,7 +188,7 @@ public class ArrayList<T> implements List<T> {
      * @return the index of the first occurrence of the specified element in this list,
      *         or -1 if this list does not contain the element
      */
-    @Override
+
     public int indexOf(T element) {
         for(int i = 0; i < size; i++){
             if (elements[i].equals(element)) {
@@ -208,7 +208,7 @@ public class ArrayList<T> implements List<T> {
      * @return the index of the last occurrence of the specified element in this list,
      *         or -1 if this list does not contain the element
      */
-    @Override
+
     public int lastIndexOf(T element) {
         for(int i = size - 1; i >= 0; i--){
             if (elements[i].equals(element)) {

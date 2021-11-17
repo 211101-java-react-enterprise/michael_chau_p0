@@ -46,7 +46,7 @@ public class AccountService {
         }
         try {
             num = Double.parseDouble(balance);
-        } catch (NumberFormatException e) {
+        } catch (InvalidRequestException e) {
             return false;
         }
 
@@ -56,145 +56,44 @@ public class AccountService {
         return true;
     }
 
-    public boolean withdrawMoney(Account account, String value) {
-        if(!isProperFormat(value)) {
-            throw new InvalidRequestException("Please enter a numeric value with no more than 2 decimal places");
+    public boolean withdrawFromAcc(Account account, String value) {
+        if (!isBalanceValid(value)) {
+            throw new InvalidRequestException("Invalid user data provided!");
         }
-        if(!isNumeric(value)) {
-            throw new InvalidRequestException("Please enter a positive numeric value");
+
+        double value_dbl = Double.parseDouble(value);
+        if(value_dbl > account.getBalance()) {
+            throw new InvalidRequestException("You cannot withdraw more than the account balance.");
         }
-        if(!isPositiveNumber(value)) {
-            throw new InvalidRequestException("User is not allowed to enter a negative number");
-        }
-        double moneyToWithdraw = Double.parseDouble(value);
-        if(moneyToWithdraw > account.getBalance()) {
-            throw new InvalidRequestException("You are attempting to withdraw more than you have");
-        }
-        account.setBalance(account.getBalance() - moneyToWithdraw);
+        account.setBalance(account.getBalance() - value_dbl);
         return accountDao.update(account);
     }
 
-    public boolean depositMoney(Account account, String value) {
-        if(!isProperFormat(value)) {
-            throw new InvalidRequestException("Please enter a numeric value with no more than 2 decimal places");
+    public boolean uppositIntoAcc(Account account, String value) {
+        if (!isBalanceValid(value)) {
+            throw new InvalidRequestException("Invalid user data provided!");
         }
-        if(!isNumeric(value)) {
-            throw new InvalidRequestException("Please enter a positive numeric value");
-        }
+        double dbl_value = Double.parseDouble(value);
 
-        if(!isPositiveNumber(value)) {
-            throw new InvalidRequestException("User is not allowed to enter a negative number");
-        }
-        double moneyToDeposit = Double.parseDouble(value);
-
-        account.setBalance(account.getBalance() + moneyToDeposit);
+        account.setBalance(account.getBalance() + dbl_value);
         return accountDao.update(account);
     }
 
-    public UserService getSessionUser() {
-        return sessionUser;
-    }
+//    public UserService getUser() {
+//        return sessionUser;
+//    }
 
     public ArrayDeque<Account> getAccounts(String userId) {
         // Returns a list of accounts based off user id.
         return accountDao.findAccountsByUserId(userId);
     }
 
-//    public List<Account> returnMyAccounts() {
-//        return (List<Account>) accountDao.findAccountsByUserId(sessionUser.getUser());
-//    }
-
-//    public boolean changeToAccount(UUID User_id, String account_id) {
-//
-//        if(Integer.parseInt(account_id) < 0) {
-//            throw new NegativeAccountIdException("Account IDs can't be negative");
-//        }
-//        account = accountDao.findAccountByUserAndAccountId(User_id, account_id);
-//        if(account == null) {
-//            throw new UnownedAccountException("User does not own this account");
-//        }
-//        sessionUser.getSessionUser().setCurrentAccount(account);
-//        return true;
-//    }
-
-    public boolean isPositiveNumber(String value) {
-        double money = Double.parseDouble(value);
-        if(money < 0) {
-            return false;
-        }
-        return true;
-    }
-
-    public boolean isNumeric(String value) {
-        if(value == null || value.equals("")) {
-            return false;
-        }
+    public boolean isValidInteger(String value) {
         try {
-            Double.parseDouble(value);
+            Integer.parseInt(value);
         } catch (NumberFormatException e) {
             return false;
         }
         return true;
     }
-
-    public boolean isProperFormat(String value) {
-        //checks to see if it is a whole number
-        if(Double.parseDouble(value) % 1 == 0) {
-            return true;
-        }
-        int integerLength = value.indexOf(".");
-        int decimalLength = value.length() - 1 - integerLength;
-        if(decimalLength > 2) {
-            return false;
-        }
-        return true;
-    }
-
-//    public boolean createNewAccount(String type) {
-//        Account account = null;
-//        if(type.equals("savings")) {
-//            account = new SavingsAccount();
-//        } else if(type.equals("checkings")) {
-//            account = new CheckingsAccount();
-//        }
-//        account.setType(type);
-//        account.setUser(sessionUser.getSessionUser());
-//
-//        return accountDao.save(account) != null;
-//    }
-
-//    public List<Transactions> viewAllTransactions(String User_id) {
-//        List<Transactions> list = accountDao.viewAllAccountsTransactions(User_id);
-//        if(list.isEmpty()) {
-//            throw new EmptyTransactionsException("There are no previously existing transactions");
-//        }
-//        System.out.println("Not empty");
-//        return list;
-//    }
-//    public List<Transactions> viewSingleTransactions(String account_id) {
-//        if(!isNumeric(account_id) || !isInteger(account_id)) {
-//            throw new InvalidRequestException("This is not an account_id");
-//        }
-//        if(!isPositiveNumber(account_id)) {
-//            throw new InvalidRequestException("An account number cannot be negative");
-//        }
-//        List<Transactions> list = accountDao.selectTransactionByAccountId(account_id);
-//        // TODO figure out how to get this to be null if possible
-//        if(list == null) {
-//            throw new UnownedAccountException("You do not own this account");
-//        }
-//        if(list.isEmpty()) {
-//            throw new UnownedAccountException("There are no previously existing transactions");
-//        }
-//        return list;
-//    }
-//
-//    public boolean isInteger(String value) {
-//        try {
-//            Integer.parseInt(value);
-//        } catch (NumberFormatException e) {
-//            return false;
-//        }
-//        return true;
-//    }
 }

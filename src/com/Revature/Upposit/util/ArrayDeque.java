@@ -251,7 +251,7 @@ public class ArrayDeque<T> implements Deque<T> {
      *
      * @return the head of the queue represented by this deque, or null if this deque is empty
      */
-    @Override
+
     public T poll() {
         return pollFirst();
     }
@@ -264,7 +264,6 @@ public class ArrayDeque<T> implements Deque<T> {
      *
      * @return the head of the queue represented by this deque, or null if this deque is empty
      */
-    @Override
     public T peek() {
         if(isEmpty()) return null;
         return (T)elements[head];

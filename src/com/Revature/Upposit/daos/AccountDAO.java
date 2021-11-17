@@ -19,19 +19,19 @@ public class AccountDAO implements CrudDAO<Account>{
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
             // Returns a list of accounts based off user id.
-            String sql = "select * from accounts where id = ? order by date_created";
+            String sql = "select * from accounts where creator_id = ? order by date_created";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, user_id);
             ResultSet result = pstmt.executeQuery();
             ArrayDeque<Account>  listResult = new ArrayDeque<>();
 
-            if (result.next()) {
+            while (result.next()) {
                 Account acc = new Account();
                 acc.setId(result.getString("id"));
                 acc.setBalance(result.getString("balance"));
                 acc.setCreator(result.getString("creator_id"));
                 acc.setDate_created(result.getString("date_created"));
-                acc.setAcc_type(result.getString("type"));
+                acc.setAcc_type(result.getString("acc_type"));
 
                 listResult.add(acc);
             }
@@ -102,7 +102,23 @@ public class AccountDAO implements CrudDAO<Account>{
     }
 
     @Override
-    public boolean update(Account updatedObj) {
+    public boolean update(Account acc) {
+        try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+
+            String sql = "update account set money = ? where id = ?;";
+
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setDouble(1,acc.getBalance());
+            pstmt.setString(2,acc.getAcc_id());
+            int rowsUpdated = pstmt.executeUpdate();
+
+            if(rowsUpdated != 0) {
+                return true;
+            }
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
