@@ -105,7 +105,7 @@ public class AccountDAO implements CrudDAO<Account>{
     public boolean update(Account acc) {
         try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql = "update account set money = ? where id = ?;";
+            String sql = "update accounts set balance = ? where id = ?;";
 
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setDouble(1,acc.getBalance());
