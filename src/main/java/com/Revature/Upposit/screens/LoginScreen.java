@@ -7,7 +7,6 @@ import com.Revature.Upposit.util.ScreenRouter;
 
 import java.io.BufferedReader;
 
-// TODO: Implement me!
 public class LoginScreen extends Screen {
 
     private final UserService userService;
@@ -28,8 +27,7 @@ public class LoginScreen extends Screen {
 
         try {
             AppUser authenticatedUser = userService.authenticateUser(username, password);
-            System.out.println("Credentials validated, matching user found: " + authenticatedUser);
-//            UserService.loginUser(authenticatedUser);
+            logger.log("Successful authentication and login of user: %s at %d", username, System.currentTimeMillis());
             router.navigate("/dashboard");
         } catch (AuthenticationException e) {
             System.out.println("Incorrect credentials provided! No matching user account found.");

@@ -18,15 +18,15 @@ public class UserService {
 
     public boolean registerNewUser(AppUser newUser) {
 
-        if (!isUserValid(newUser)) {
-            throw new InvalidRequestException("Invalid user data provided!");
-        }
-
         if(userDAO.findUserByEmail(newUser.getEmail()) != null) {
             throw new ResourcePersistenceException("A user already used this email.");
         }
         if(userDAO.findUserByUsername(newUser.getUsername()) != null) {
             throw new ResourcePersistenceException("A user already used this username.");
+        }
+
+        if (!isUserValid(newUser)) {
+            throw new InvalidRequestException("Invalid user data provided!");
         }
 
         AppUser registeredUser = userDAO.save(newUser);

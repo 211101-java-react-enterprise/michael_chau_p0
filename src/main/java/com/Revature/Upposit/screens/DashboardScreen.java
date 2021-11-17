@@ -61,6 +61,7 @@ public class DashboardScreen extends Screen{
                     break;
                 case "6":
                     System.out.printf("Logging out. Have a good day, %s.\n", sessionUser.getFirstName());
+                    logger.log("User: %s signed off on %d", sessionUser.getUsername(), System.currentTimeMillis());
                     userService.logoutUser();
                     break;
                 default:
