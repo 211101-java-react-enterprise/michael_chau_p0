@@ -45,10 +45,10 @@ public class AccountDAO implements CrudDAO<Account>{
 
             newAcc.setId(UUID.randomUUID().toString());
 
-            String sql = "insert into accounts (id, balance, creator_id, type, date_created) values (?, ?, ?, ?, ?)";
+            String sql = "insert into accounts (id, balance, creator_id, acc_type) values (?, ?, ?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, newAcc.getAcc_id());
-            pstmt.setString(2, String.valueOf(newAcc.getBalance()));
+            pstmt.setDouble(2, newAcc.getBalance());
             pstmt.setString(3, newAcc.getCreatorId());
             pstmt.setString(4, newAcc.getAcc_type());
 //            pstmt.setString(5, newAcc.getDate_created());

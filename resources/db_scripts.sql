@@ -1,5 +1,5 @@
+drop table if exists user_bank_accounts;
 drop table if exists accounts;
-drop table if exists bank_accounts;
 drop table if exists app_users;
 
 create table app_users (
@@ -14,11 +14,11 @@ create table app_users (
     primary key (id)
 );
 
-create table bank_accounts (
+create table accounts (
     id varchar not null check (id <> ''),
     balance numeric(10,2), --not null check (balance <> '')
     acc_type varchar not null check (acc_type <> ''),
-    date_created date default current_date,
+    date_created timestamp default current_timestamp,
     creator_id varchar not null check (creator_id <> ''),
 
     constraint accounts_pk
@@ -31,7 +31,7 @@ create table bank_accounts (
 
 
 create table user_bank_accounts(
-	user_id varchar not null check (id<>''),
+	user_id varchar not null check (user_id<>''),
 	bank_account_id varchar not null check(bank_account_id<>''),
 	
 	constraint user_id_fk
@@ -43,3 +43,5 @@ create table user_bank_accounts(
 	references accounts
 );
 
+insert into accounts (id, balance, creator_id, acc_type)
+values ('sdjlfkjelk', 10000, '35ca0232-a30a-4bd3-860a-4123e45bee9a', 'checking');
