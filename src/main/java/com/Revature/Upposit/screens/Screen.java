@@ -1,5 +1,6 @@
 package com.Revature.Upposit.screens;
 
+import com.Revature.Upposit.util.Logger;
 import com.Revature.Upposit.util.ScreenRouter;
 
 import java.io.BufferedReader;
@@ -10,6 +11,7 @@ public abstract class Screen {
     protected String route;
     protected BufferedReader consoleReader;
     protected ScreenRouter router;
+    protected Logger logger = Logger.getLogger(true);
 
     public Screen(String name, String route, BufferedReader consoleReader, ScreenRouter router) {
         this.name = name;
