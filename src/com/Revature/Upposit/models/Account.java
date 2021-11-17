@@ -34,5 +34,8 @@ public class Account extends Object{
     public String getAcc_type() { return acc_type;}
     public void setAcc_type(String type) { this.acc_type = type;}
 
-
+    public String getAccName() {
+        //returns last 7 digits
+        return acc_id.substring(acc_id.length() - 7);
+    }
 }
