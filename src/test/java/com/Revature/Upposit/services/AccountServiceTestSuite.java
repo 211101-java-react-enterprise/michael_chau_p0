@@ -50,19 +50,12 @@ public class AccountServiceTestSuite {
 
         //Arrange
         String val = "-10";
-        String val2 = "0";
-        String val3 = " ";
 
         //Act
         boolean result1 = sut.isBalanceValid(val);
-        boolean result2 = sut.isBalanceValid(val2);
-        boolean result3 = sut.isBalanceValid(val3);
-
 
         //Assert
         Assert.assertFalse("Expected value to be invalid ", result1);
-        Assert.assertFalse("Expected value to be invalid ", result2);
-        Assert.assertFalse("Expected value to be invalid ", result3);
     }
 
 //    @Test

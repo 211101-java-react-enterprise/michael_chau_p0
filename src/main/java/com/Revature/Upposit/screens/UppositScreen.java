@@ -55,7 +55,7 @@ public class UppositScreen extends Screen {
             System.out.println("You have provided invalid data. Please try again.");
         }
 
-        if ((index>=size) || index <= 0) {
+        if ((index>size) || index <= 0) {
             System.out.println("Returning to main menu.");
             router.navigate("/dashboard");
         }
