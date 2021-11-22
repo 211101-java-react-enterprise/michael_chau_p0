@@ -3,6 +3,8 @@ package com.Revature.Upposit.util;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Logger {
 
@@ -27,8 +29,10 @@ public class Logger {
     public void log(String message, Object... args) {
 
         try (Writer logWriter = new FileWriter("resources/logs/app.log", true)) {
+            LocalDateTime time = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-            String formattedMsg = String.format(message, args);
+            String formattedMsg = time.format(formatter) + ": " + String.format(message, args);
             logWriter.write(formattedMsg + "\n");
 
             if (printToConsole) {
@@ -40,6 +44,5 @@ public class Logger {
         }
 
     }
-
 
 }

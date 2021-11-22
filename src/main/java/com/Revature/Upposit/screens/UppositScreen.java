@@ -58,18 +58,18 @@ public class UppositScreen extends Screen {
         if ((index>size) || index <= 0) {
             System.out.println("Returning to main menu.");
             router.navigate("/dashboard");
-        }
+        }else {
+            System.out.print("How much would you like to Upposit? ");
+            String input_val = consoleReader.readLine();
 
-        System.out.print("How much would you like to Upposit? ");
-        String input_val = consoleReader.readLine();
+            try {
+                Account acc = fullList.get(index-1);
+                boolean updateIsSuccessful = accountService.uppositIntoAcc(acc, input_val);
+                if(updateIsSuccessful)System.out.println("Successfully updated your account.");
 
-        try {
-            Account acc = fullList.get(index-1);
-            boolean updateIsSuccessful = accountService.uppositIntoAcc(acc, input_val);
-            if(updateIsSuccessful)System.out.println("Successfully updated your account.");
-
-        }catch (InvalidRequestException | ArrayIndexOutOfBoundsException e) {
-            System.out.println("You have provided invalid data. Please try again.");
+            }catch (InvalidRequestException | ArrayIndexOutOfBoundsException e) {
+                System.out.println("You have provided invalid data. Please try again.");
+            }
         }
 
     }

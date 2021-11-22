@@ -15,7 +15,7 @@ public class SavingsAccScreen extends Screen{
 
     @Override
     public void render() throws Exception {
-        System.out.println("        List of your Savings Accounts");
+        System.out.println("       List of your Savings Accounts");
         accountService.displayListOfAcc(2);
     }
 }

@@ -37,12 +37,12 @@ public class RegisterScreen extends Screen {
         String password = consoleReader.readLine();
 
         System.out.printf("Thank you, %s %s\n", firstName, lastName);
-        // String format specifiers: %s (strings), %d (whole numbers), %f (decimal values)
 
         AppUser newUser = new AppUser(firstName, lastName, email, username, password);
 
         try {
             userService.registerNewUser(newUser);
+            router.navigate("/login");
 
         } catch (InvalidRequestException e) {
             System.out.println("You have provided invalid data. Please try again.");

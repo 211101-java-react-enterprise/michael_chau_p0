@@ -15,7 +15,7 @@ public class CheckingAccScreen extends Screen{
 
     @Override
     public void render() throws Exception {
-        System.out.println("        List of your Checking Accounts");
+        System.out.println("       List of your Checking Accounts");
         accountService.displayListOfAcc(1);
     }
 }

@@ -27,7 +27,7 @@ public class DashboardScreen extends Screen{
         }
 
         while (userService.isUserLoggedIn()) {
-            System.out.printf("\n          Main Menu: %s's Dashboard\n", sessionUser.getFirstName());
+            System.out.printf("\n       Main Menu: %s's Dashboard\n", sessionUser.getFirstName());
 
             String menu =
                     "Please select an option:\n" +
@@ -61,7 +61,7 @@ public class DashboardScreen extends Screen{
                     break;
                 case "6":
                     System.out.printf("Logging out. Have a good day, %s.\n", sessionUser.getFirstName());
-                    logger.log("User: %s signed off on %d", sessionUser.getUsername(), System.currentTimeMillis());
+                    logger.log("User: %s signed off", sessionUser.getUsername());
                     userService.logoutUser();
                     break;
                 default:
